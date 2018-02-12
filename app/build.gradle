@@ -26,4 +26,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    // https://mvnrepository.com/artifact/com.moparisthebest/junidecode
+    compile group: 'com.moparisthebest', name: 'junidecode', version: '0.1.1'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile 'org.apache.commons:commons-lang3:3.7'
 }
