@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def versions = [:]
+versions.dagger = "2.11"
 
 android {
     compileSdkVersion 27
@@ -21,6 +25,12 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+
 }
 
 repositories {
@@ -36,17 +46,32 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-
     // https://mvnrepository.com/artifact/com.moparisthebest/junidecode
-    compile group: 'com.moparisthebest', name: 'junidecode', version: '0.1.1'
+    implementation group: 'com.moparisthebest', name: 'junidecode', version: '0.1.1'
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-    compile 'org.apache.commons:commons-lang3:3.7'
+    implementation 'org.apache.commons:commons-lang3:3.7'
 
     //Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Architecture components
     implementation "android.arch.lifecycle:extensions:1.1.0"
+
+    //Dagger 2 dependencies
+    /*implementation 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.10'
+    kapt 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'*/
+
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
+
+    // notice that the compiler version must be the same than our gradle version
+    kapt 'com.android.databinding:compiler:3.0.1'
+
 }
 
