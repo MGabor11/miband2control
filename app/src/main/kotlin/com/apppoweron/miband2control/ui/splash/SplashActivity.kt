@@ -1,13 +1,11 @@
 package com.apppoweron.miband2control.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import com.apppoweron.miband2control.R
 import com.apppoweron.miband2control.ui.BaseActivity
-import com.apppoweron.miband2control.ui.MainActivity
-import com.apppoweron.miband2control.ui.NavigationController
+import com.apppoweron.miband2control.ui.navigationcontroller.NavigationController
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -39,10 +37,11 @@ class SplashActivity : BaseActivity(), HasSupportFragmentInjector {
 
         mSplashDurationHandler?.postDelayed({
             // Start home activity
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            //startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
             // close splash activity
-            finish()
+            //finish()
+            navigationController.navigateToMainActivity()
         }, SPLASH_DURATION.toLong())
     }
 

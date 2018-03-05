@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package com.apppoweron.miband2control.ui;
+package com.apppoweron.miband2control.ui.navigationcontroller
+
+import android.app.Activity
+import android.content.Intent
+import com.apppoweron.miband2control.ui.MainActivity
+import javax.inject.Inject
 
 
-import javax.inject.Inject;
+class NavigationControllerImpl @Inject constructor(private val activity: Activity) : NavigationController {
 
-public class NavigationController {
-    /*private final int containerId;
-    private final FragmentManager fragmentManager;
-    private final AppCompatActivity activity;
-*/
-    /*@Inject
-    public NavigationController(AppCompatActivity activity) {
-        this.containerId = R.id.fragment_container; //TODO it should be adjustable
-        this.activity = activity;
-        this.fragmentManager = activity.getSupportFragmentManager();
-    }*/
+    override fun navigateToMainActivity() {
+        // Start home activity
+        activity.startActivity(Intent(activity, MainActivity::class.java))
 
-    @Inject
-    public NavigationController() {
-
-    }
-
-    public void navigateToMainActivity(){
-
+        // close splash activity
+        activity.finish()
     }
 
 }

@@ -18,7 +18,7 @@ package com.apppoweron.miband2control.di
 
 import dagger.Module
 
-@Module(includes = [(ViewModelModule::class)/*, (NavigationModule::class)*/])
+@Module(includes = [(ViewModelModule::class)])
 internal class AppModule {/*@Singleton @Provides
     GithubService provideGithubService() {
         return new Retrofit.Builder()
@@ -43,4 +43,6 @@ internal class AppModule {/*@Singleton @Provides
     RepoDao provideRepoDao(GithubDb db) {
         return db.repoDao();
     }*/
+
+
 }
