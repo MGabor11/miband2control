@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.apppoweron.miband2control.R
+import com.apppoweron.miband2control.ui.common.BaseActivity
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject

@@ -1,7 +1,8 @@
-package com.apppoweron.miband2control.ui
+package com.apppoweron.miband2control.ui.common
 
 import android.content.Context
 import android.support.v4.app.Fragment
+import com.apppoweron.miband2control.ui.FragmentCommunicator
 
 abstract class BaseFragment : Fragment() {
 

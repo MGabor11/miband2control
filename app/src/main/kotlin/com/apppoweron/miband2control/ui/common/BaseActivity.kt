@@ -1,8 +1,10 @@
-package com.apppoweron.miband2control.ui
+package com.apppoweron.miband2control.ui.common
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import com.apppoweron.miband2control.ui.FragmentCommunicator
+import com.apppoweron.miband2control.ui.NoContainerException
 
 abstract class BaseActivity : AppCompatActivity(), FragmentCommunicator {
 
@@ -36,8 +38,8 @@ abstract class BaseActivity : AppCompatActivity(), FragmentCommunicator {
     @JvmOverloads
     fun loadFragment(fragment: Fragment, loadType: FragmentLoadType, needToBackStack: Boolean = false) {
         when (loadType) {
-            BaseActivity.FragmentLoadType.ADD -> addFragment(fragment)
-            BaseActivity.FragmentLoadType.REPLACE -> replaceFragment(fragment, needToBackStack)
+            FragmentLoadType.ADD -> addFragment(fragment)
+            FragmentLoadType.REPLACE -> replaceFragment(fragment, needToBackStack)
         }
     }
 

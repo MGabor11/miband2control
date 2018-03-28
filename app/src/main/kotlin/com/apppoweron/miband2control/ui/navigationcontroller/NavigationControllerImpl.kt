@@ -22,14 +22,14 @@ import com.apppoweron.miband2control.ui.MainActivity
 import javax.inject.Inject
 
 
-class NavigationControllerImpl @Inject constructor(private val activity: Activity) : NavigationController {
+class NavigationControllerImpl @Inject constructor(private val activity: Activity?) : NavigationController {
 
     override fun navigateToMainActivity() {
         // Start home activity
-        activity.startActivity(Intent(activity, MainActivity::class.java))
+        activity?.startActivity(Intent(activity, MainActivity::class.java))
 
         // close splash activity
-        activity.finish()
+        activity?.finish()
     }
 
 }

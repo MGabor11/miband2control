@@ -19,30 +19,10 @@ package com.apppoweron.miband2control.di
 import dagger.Module
 
 @Module(includes = [(ViewModelModule::class)])
-internal class AppModule {/*@Singleton @Provides
-    GithubService provideGithubService() {
-        return new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
-                .build()
-                .create(GithubService.class);
-    }
+internal class AppModule {
 
-    @Singleton @Provides
-    GithubDb provideDb(Application app) {
-        return Room.databaseBuilder(app, GithubDb.class,"github.db").build();
-    }
 
-    @Singleton @Provides
-    UserDao provideUserDao(GithubDb db) {
-        return db.userDao();
-    }
 
-    @Singleton @Provides
-    RepoDao provideRepoDao(GithubDb db) {
-        return db.repoDao();
-    }*/
 
 
 }
