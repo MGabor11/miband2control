@@ -1,4 +1,4 @@
-package com.apppoweron.miband2control.di
+package com.apppoweron.miband2control.di.module
 
 import android.app.Activity
 

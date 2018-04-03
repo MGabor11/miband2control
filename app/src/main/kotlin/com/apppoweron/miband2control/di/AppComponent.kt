@@ -19,6 +19,8 @@ package com.apppoweron.miband2control.di
 
 import android.app.Application
 import com.apppoweron.miband2control.ApplicationObject
+import com.apppoweron.miband2control.di.module.ActivityBindingModule
+import com.apppoweron.miband2control.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

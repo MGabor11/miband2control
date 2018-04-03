@@ -16,13 +16,22 @@
 
 package com.apppoweron.miband2control.di
 
+import com.apppoweron.miband2control.ui.MainActivityFragment
+
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [(ViewModelModule::class)])
-internal class AppModule {
+@Module
+abstract class FragmentBuildersModule {
+    /*@ContributesAndroidInjector
+    abstract RepoFragment contributeRepoFragment();
 
+    @ContributesAndroidInjector
+    abstract UserFragment contributeUserFragment();
 
+    @ContributesAndroidInjector
+    abstract SearchFragment contributeSearchFragment();*/
 
-
-
+    @ContributesAndroidInjector
+    internal abstract fun contributeMainActivityFragment(): MainActivityFragment
 }

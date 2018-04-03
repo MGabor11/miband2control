@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package com.apppoweron.miband2control.di;
+package com.apppoweron.miband2control.di.module
 
-import dagger.Module;
+import dagger.Module
 
-@Module
-public abstract class FragmentBuildersModule {
-    /*@ContributesAndroidInjector
-    abstract RepoFragment contributeRepoFragment();
+@Module(includes = [(ViewModelModule::class)])
+internal class AppModule {
 
-    @ContributesAndroidInjector
-    abstract UserFragment contributeUserFragment();
 
-    @ContributesAndroidInjector
-    abstract SearchFragment contributeSearchFragment();*/
+
+
+
 }

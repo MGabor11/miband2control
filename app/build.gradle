@@ -33,6 +33,10 @@ android {
 
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 repositories {
     mavenCentral()
 }

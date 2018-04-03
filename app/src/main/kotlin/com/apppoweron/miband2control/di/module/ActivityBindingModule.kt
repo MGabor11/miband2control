@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.apppoweron.miband2control.di
+package com.apppoweron.miband2control.di.module
 
 
+import com.apppoweron.miband2control.di.FragmentBuildersModule
 import com.apppoweron.miband2control.di.scopes.ActivityScope
 import com.apppoweron.miband2control.ui.MainActivity
 import com.apppoweron.miband2control.ui.splash.SplashActivity
@@ -28,7 +29,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBindingModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [(FragmentBuildersModule::class)])
+    @ContributesAndroidInjector(modules = [MainModule::class,(FragmentBuildersModule::class)])
     internal abstract fun contributeMainActivity(): MainActivity
 
     @ActivityScope
