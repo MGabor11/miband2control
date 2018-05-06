@@ -1,4 +1,4 @@
-package com.apppoweron.miband2control.di;
+package com.apppoweron.miband2control.di.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;

@@ -8,6 +8,10 @@ import com.apppoweron.miband2control.ui.NoContainerException
 
 abstract class BaseActivity : AppCompatActivity(), FragmentCommunicator {
 
+    companion object {
+        private const val DEFAULT_CONTAINER_ID = -1
+    }
+
     private var mBackPressListener: BackPressListener? = null
 
     open val containerId: Int
@@ -88,11 +92,4 @@ abstract class BaseActivity : AppCompatActivity(), FragmentCommunicator {
         }
 
     }
-
-    companion object {
-
-        private val DEFAULT_CONTAINER_ID = -1
-    }
-
-
 }

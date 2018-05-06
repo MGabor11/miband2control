@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.apppoweron.miband2control.di
+package com.apppoweron.miband2control.di.component
 
 
 import android.app.Application

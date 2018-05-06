@@ -2,8 +2,8 @@ package com.apppoweron.miband2control.di.module
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.apppoweron.miband2control.di.AppViewModelFactory
-import com.apppoweron.miband2control.di.ViewModelKey
+import com.apppoweron.miband2control.di.viewmodel.AppViewModelFactory
+import com.apppoweron.miband2control.di.viewmodel.ViewModelKey
 import com.apppoweron.miband2control.ui.splash.SplashViewModelImpl
 import dagger.Binds
 import dagger.Module
