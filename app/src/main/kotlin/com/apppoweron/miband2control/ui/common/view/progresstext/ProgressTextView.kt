@@ -38,8 +38,23 @@ class ProgressTextView @JvmOverloads constructor(
         hiderProgressBar.requestLayout()
     }
 
-    fun setProgress(percentage: Int) {
-        hiderProgressBar.progress = 100 - percentage
+    fun setProgress(percentage: Int?) {
+        percentage?.let {
+            //hiderProgressBar.progress = 100 - percentage
+            val progress : Int = 100 - percentage
+            val anim = ProgressBarAnimation(hiderProgressBar, hiderProgressBar.progress , progress)
+            anim.duration = 500
+            hiderProgressBar.startAnimation(anim)
+        }
+    }
+
+    fun setProgress(percentage: Int?, duration : Long) {
+        percentage?.let {
+            val progress : Int = 100 - percentage
+            val anim = ProgressBarAnimation(hiderProgressBar, hiderProgressBar.progress , progress)
+            anim.duration = duration
+            hiderProgressBar.startAnimation(anim)
+        }
     }
 
 

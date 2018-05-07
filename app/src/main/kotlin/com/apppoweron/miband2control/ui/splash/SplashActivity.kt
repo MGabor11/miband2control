@@ -1,6 +1,5 @@
 package com.apppoweron.miband2control.ui.splash
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -11,6 +10,7 @@ import com.apppoweron.miband2control.databinding.ActivitySplashBinding
 import com.apppoweron.miband2control.ui.common.BaseActivity
 import com.apppoweron.miband2control.ui.common.view.progresstext.ProgressTextView
 import com.apppoweron.miband2control.ui.navigationcontroller.NavigationController
+import com.apppoweron.miband2control.util.bind
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -41,9 +41,10 @@ class SplashActivity : BaseActivity(), HasSupportFragmentInjector {
         mSplashViewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashViewModelImpl::class.java)
         binding.model = mSplashViewModel as SplashViewModelImpl
         mSplashViewModel?.navigationController = navigationControllerImpl
-        val progressText: ProgressTextView = findViewById(R.id.splash_progress_tv)
-        (mSplashViewModel as SplashViewModelImpl).getProgress().observe(this, Observer { progress ->  progressText.setProgress(progress!!)}) //TODO
+        val progressText: ProgressTextView by bind(R.id.splash_progress_tv)
+        //mSplashViewModel?.getProgress()?.observe(this, Observer { progress -> progressText.setProgress(progress) })
         mSplashViewModel?.startCountDown()
+        progressText.setProgress(100, 7000)
 
     }
 

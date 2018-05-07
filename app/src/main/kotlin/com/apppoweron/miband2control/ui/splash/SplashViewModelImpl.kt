@@ -11,18 +11,18 @@ import javax.inject.Inject
 class SplashViewModelImpl @Inject constructor(): BaseViewModelImpl(), SplashViewModel {
 
     companion object {
-        private const val SPLASH_DURATION = 10000
+        private const val SPLASH_DURATION = 7000
     }
 
     val currentCountDownTimeObservableField = ObservableField<String>()
     var currentCountDownTime: Long = SPLASH_DURATION.toLong()
 
-    private val progress = MutableLiveData<Int>()
+    private val progress = MutableLiveData<Int?>()
 
     private var mSplashDurationTimer: CountDownTimer? = null
 
     override fun startCountDown() {
-        mSplashDurationTimer = object : CountDownTimer(currentCountDownTime, 50) {
+        mSplashDurationTimer = object : CountDownTimer(currentCountDownTime, 500) {
 
             override fun onTick(millisUntilFinished: Long) {
                 currentCountDownTimeObservableField.set("" + millisUntilFinished)
@@ -37,7 +37,7 @@ class SplashViewModelImpl @Inject constructor(): BaseViewModelImpl(), SplashView
         }.start()
     }
 
-    fun getProgress() : LiveData<Int> {
+    override fun getProgress() : LiveData<Int?> {
         return progress
     }
 
