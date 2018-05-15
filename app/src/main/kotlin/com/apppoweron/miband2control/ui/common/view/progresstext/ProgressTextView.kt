@@ -50,9 +50,9 @@ class ProgressTextView @JvmOverloads constructor(
         }
     }
 
-    fun setProgress(percentage: Int?, duration: Long) {
+    fun setProgress(percentage: Int?, duration: Long, onAnimEnded: () -> Unit?) {
         percentage?.let {
-            getProgressAnimationProvider()?.setUpObserver()
+            getProgressAnimationProvider()?.startAnimation(onAnimEnded)
         }
     }
 

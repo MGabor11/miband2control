@@ -1,6 +1,7 @@
 package com.apppoweron.miband2control.ui.common.view.progresstext
 
 import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Build
@@ -11,13 +12,14 @@ import android.widget.ProgressBar
 
 class ProgressAnimationProvider(private val progressBar: ProgressBar, private val onAnimEnded: (() -> Unit?)? = null) {
 
-    private var isFirstAnimStarted : Boolean = false
+    private var isFirstAnimStarted: Boolean = false
 
-    fun setUpObserver() {
+    private fun setUpObserver(onAnimEnded: () -> Unit?) {
         progressBar.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             @SuppressLint("ObsoleteSdkInt")
             override fun onGlobalLayout() {
-                startAnimation()
+                isFirstAnimStarted = true
+                startAnimation(onAnimEnded)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     progressBar.viewTreeObserver.removeOnGlobalLayoutListener(this)
@@ -29,11 +31,11 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
     }
 
     fun setProgress(percentage: Int) {
-
+        //TODO
     }
 
     fun setProgressValue(value: Int) {
-
+        //TODO
     }
 
     fun startAnimation(percentage: Int) {
@@ -41,8 +43,10 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
     }
 
     fun startAnimation(onAnimEnded: () -> Unit?) {
-
-
+        if (!isFirstAnimStarted) {
+            setUpObserver(onAnimEnded)
+            return
+        }
 
         val width = progressBar.width
         progressBar.max = width
@@ -50,24 +54,45 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
         val animator = ValueAnimator.ofInt(width, 0)
         animator.interpolator = LinearInterpolator()
         animator.startDelay = 0
-        animator.duration = 10000
+        animator.duration = 7000
         animator.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Int
             progressBar.progress = value
         }
-        animator.setListener(animationEnd = {
+        animator.addListener (animationEnd = {
             onAnimEnded()
-        }, animationCancel = {})
+        }, animationCancel = {
+            onAnimEnded()
+        })
 
         animator.start()
     }
 
-    private inline fun ValueAnimator.setListener(
-            crossinline animationStart: (Animator) -> Unit = {},
-            crossinline animationRepeat: (Animator) -> Unit = {},
-            crossinline animationCancel: (Animator) -> Unit = {},
-            crossinline animationEnd: (Animator) -> Unit = {}) {
-    }
+}
+
+inline fun ValueAnimator.addListener (
+        crossinline animationStart: (Animator) -> Unit = {},
+        crossinline animationRepeat: (Animator) -> Unit = {},
+        crossinline animationCancel: (Animator) -> Unit = {},
+        crossinline animationEnd: (Animator) -> Unit = {}) {
+
+    addListener(object : AnimatorListenerAdapter() {
+        override fun onAnimationStart(animation: Animator) {
+            animationStart(animation)
+        }
+
+        override fun onAnimationRepeat(animation: Animator) {
+            animationRepeat(animation)
+        }
+
+        override fun onAnimationCancel(animation: Animator) {
+            animationCancel(animation)
+        }
+
+        override fun onAnimationEnd(animation: Animator) {
+            animationEnd(animation)
+        }
+    })
 }
 
 

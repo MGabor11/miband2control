@@ -31,7 +31,7 @@ class SplashViewModelImpl @Inject constructor(): BaseViewModelImpl(), SplashView
             }
 
             override fun onFinish() {
-                navigationController?.navigateToMainActivity()
+                //navigationController?.navigateToMainActivity() //TODO
             }
 
         }.start()

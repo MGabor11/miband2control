@@ -44,7 +44,7 @@ class SplashActivity : BaseActivity(), HasSupportFragmentInjector {
         val progressText: ProgressTextView by bind(R.id.splash_progress_tv)
         //mSplashViewModel?.getProgress()?.observe(this, Observer { progress -> progressText.setProgress(progress) })
         mSplashViewModel?.startCountDown()
-        progressText.setProgress(100, 7000)
+        progressText.setProgress(100, 7000, { navigationControllerImpl.navigateToMainActivity() })
 
     }
 
