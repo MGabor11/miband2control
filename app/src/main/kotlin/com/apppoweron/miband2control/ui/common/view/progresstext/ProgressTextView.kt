@@ -52,10 +52,6 @@ class ProgressTextView @JvmOverloads constructor(
 
     fun setProgress(percentage: Int?, duration: Long) {
         percentage?.let {
-            /*val progress: Int = 100 - percentage
-            val anim = ProgressBarAnimation(hiderProgressBar, hiderProgressBar.progress, progress)
-            anim.duration = duration
-            hiderProgressBar.startAnimation(anim)*/
             getProgressAnimationProvider()?.setUpObserver()
         }
     }

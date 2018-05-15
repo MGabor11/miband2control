@@ -9,7 +9,9 @@ import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 
 
-class ProgressAnimationProvider(private val progressBar: ProgressBar, private var ) {
+class ProgressAnimationProvider(private val progressBar: ProgressBar, private val onAnimEnded: (() -> Unit?)? = null) {
+
+    private var isFirstAnimStarted : Boolean = false
 
     fun setUpObserver() {
         progressBar.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -39,6 +41,9 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
     }
 
     fun startAnimation(onAnimEnded: () -> Unit?) {
+
+
+
         val width = progressBar.width
         progressBar.max = width
 
@@ -50,8 +55,9 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
             val value = valueAnimator.animatedValue as Int
             progressBar.progress = value
         }
-        animator.setListener(animationEnd = {onAnimEnded()},
-                animationCancel = {})
+        animator.setListener(animationEnd = {
+            onAnimEnded()
+        }, animationCancel = {})
 
         animator.start()
     }
