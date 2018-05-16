@@ -68,31 +68,33 @@ class ProgressAnimationProvider(private val progressBar: ProgressBar, private va
         animator.start()
     }
 
+    private inline fun ValueAnimator.addListener (
+            crossinline animationStart: (Animator) -> Unit = {},
+            crossinline animationRepeat: (Animator) -> Unit = {},
+            crossinline animationCancel: (Animator) -> Unit = {},
+            crossinline animationEnd: (Animator) -> Unit = {}) {
+
+        addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationStart(animation: Animator) {
+                animationStart(animation)
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                animationRepeat(animation)
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+                animationCancel(animation)
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                animationEnd(animation)
+            }
+        })
+    }
+
 }
 
-inline fun ValueAnimator.addListener (
-        crossinline animationStart: (Animator) -> Unit = {},
-        crossinline animationRepeat: (Animator) -> Unit = {},
-        crossinline animationCancel: (Animator) -> Unit = {},
-        crossinline animationEnd: (Animator) -> Unit = {}) {
 
-    addListener(object : AnimatorListenerAdapter() {
-        override fun onAnimationStart(animation: Animator) {
-            animationStart(animation)
-        }
-
-        override fun onAnimationRepeat(animation: Animator) {
-            animationRepeat(animation)
-        }
-
-        override fun onAnimationCancel(animation: Animator) {
-            animationCancel(animation)
-        }
-
-        override fun onAnimationEnd(animation: Animator) {
-            animationEnd(animation)
-        }
-    })
-}
 
 
